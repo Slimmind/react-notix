@@ -1,0 +1,73 @@
+// MIXINS
+
+@mixin bg ($posX: null, $posY: null, $sizeX: null, $sizeY: null) {
+    background: {
+        repeat: no-repeat;
+        position: $posX $posY;
+        size: $sizeX $sizeY;
+    }
+}
+
+@mixin pos ($pos: null, $top: null, $left: null, $bottom: null, $right: null) {
+    position: $pos;
+    right: $right;
+    bottom: $bottom;
+
+    @if ($top=="center"and $left=="center") {
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+    }
+
+    @if($top=="center"and $left !="center") {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    @if not($top=="center") {
+        top: $top;
+    }
+
+    @if($left=="center"and $top !="center") {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    @if not($left=="center") {
+        left: $left;
+    }
+}
+
+@mixin flex ($fd: null, $jc: null, $ai: null, $fw: null, $ac: null) {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-direction: $fd;
+    flex-direction: $fd;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-wrap: $fw;
+    align-content: $ac;
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content
+    }
+
+    &:-moz-placeholder {
+        opacity: 1;
+        @content
+    }
+
+    &::-moz-placeholder {
+        opacity: 1;
+        @content
+    }
+
+    &:-ms-input-placeholder {
+        @content
+    }
+}

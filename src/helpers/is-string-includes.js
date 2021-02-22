@@ -1,0 +1,1 @@
+export const isStringIncludes = (string, query) => string.toLowerCase().includes(query);

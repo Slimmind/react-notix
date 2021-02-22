@@ -1,0 +1,126 @@
+@import "../../style-helper.scss";
+
+.todo {
+    padding: 8px 45px 9px 50px;
+    transition: transform .5s;
+    opacity: 1;
+    transition: opacity .3s;
+    background-color: rgba($color-white, .5);
+    box-shadow: $main-shadow;
+
+    &:before {
+        content: "";
+        @include pos(absolute, 0, 0);
+        width: 100%;
+        height: 100%;
+    }
+
+    &:after {
+        content: attr(data-todo-symbol);
+        @include pos(absolute, 10px, 10px);
+        width: 32px;
+        height: 32px;
+        border-radius: 16px;
+        font-size: 21px;
+        text-align: center;
+        line-height: 32px;
+        color: $color-white;
+        text-transform: uppercase;
+        box-shadow: $main-shadow;
+    }
+
+    &.overdue {
+        box-shadow: 0 0 5px 0 rgba($color-red, .9);
+
+        .todo-date {
+            // background-color: $color-red !important;
+            // color: $color-white !important;
+        }
+
+        .check-btn {
+            border-color: $color-red;
+        }
+    }
+
+    &.normal {
+        &::after {
+            background-color: $color-blue;
+        }
+
+        .item-title {
+            color: $color-blue;
+        }
+
+        .todo-date {
+            background-color: $color-blue;
+        }
+
+        &.done {
+            background: rgba($color-blue, .7);
+        }
+    }
+
+    &.attention {
+        &::after {
+            background-color: $color-green;
+        }
+
+        .item-title {
+            color: $color-green;
+        }
+
+        .todo-date {
+            background-color: $color-green;
+        }
+
+        &.done {
+            background: rgba($color-green, .7);
+        }
+    }
+
+    &.urgent {
+        &::after {
+            background-color: $color-red;
+        }
+
+        .item-title {
+            color: $color-red;
+        }
+
+        .todo-date {
+            background-color: $color-red;
+        }
+
+        &.done {
+            background: rgba($color-red, .7);
+        }
+    }
+
+    &.done {
+        opacity: .4;
+
+        .check-btn {
+            &:before {
+                opacity: 1;
+                transform: rotate(45deg) translate(-6px, -7px) scaleY(1);
+            }
+        }
+    }
+
+    .item-title {
+        margin-bottom: 3px;
+    }
+
+    .item-text {
+        margin-bottom: 5px;
+    }
+}
+
+.todo-date {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 5px;
+    line-height: 18px;
+    color: $color-white;
+    border-radius: 3px;
+}
