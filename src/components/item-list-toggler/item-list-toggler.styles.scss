@@ -1,0 +1,48 @@
+@import "../../style-helper.scss";
+
+.item-toggler {
+    @include flex(row);
+    width: calc(100% - 20px);
+    margin: 10px auto 30px;
+    border-radius: $main-radius;
+    box-shadow: $main-shadow;
+
+    .input-wrap {
+        width: 50%;
+        flex-shrink: 0;
+        margin-bottom: 0;
+
+        &:nth-of-type(odd) {
+            input[type="radio"]+label {
+                border-radius: 10px 0 0 10px;
+            }
+        }
+
+        &:nth-of-type(even) {
+            input[type="radio"]+label {
+                border-radius: 0 10px 10px 0;
+            }
+        }
+    }
+
+    input[type="radio"] {
+        @include pos(absolute, 0, 0);
+        pointer-events: none;
+        opacity: 0;
+    }
+
+    input[type="radio"]+label {
+        position: relative;
+        display: block;
+        padding: 15px;
+        text-align: center;
+        background: $color-grey-light;
+        color: $color-grey;
+        transition: color .3s, background-color .3s;
+    }
+
+    input[type="radio"]:checked+label {
+        background-color: $color-white;
+        color: $color-black;
+    }
+}

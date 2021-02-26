@@ -1,0 +1,1 @@
+export const selectCurrentItemList = state => state.itemListToggler.currentItemList;
