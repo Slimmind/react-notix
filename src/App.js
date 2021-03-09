@@ -5,15 +5,15 @@ import Popups from "./components/popups";
 import TodoList from "./components/todo-list";
 import NoteList from "./components/note-list";
 import NavPanel from "./components/nav-panel";
-import TodoForm from "./components/todo-form";
+import ItemForm from "./components/item-form";
 
-import {todoSelectors} from "./store/todo/todo.selectors";
+import {itemSelectors} from "./store/item/item.selectors";
 import {selectCurrentItemList} from "./store/item-list-toggler/item-list-toggler.selectors";
 
 function App(props) {
-    const {isTodoFormVisible, currentItemList} = props;
+    const {isItemFormVisible, currentItemList} = props;
 
-    const itemList = currentItemList === "todo-list" ? <TodoList /> : <NoteList />
+    const itemList = currentItemList === "todoList" ? <TodoList /> : <NoteList />
 
     return (
         <div className="App">
@@ -22,7 +22,7 @@ function App(props) {
                 itemList
             }
             <Popups>
-                {isTodoFormVisible && <TodoForm />}
+                {isItemFormVisible && <ItemForm />}
             </Popups>
             <NavPanel />
         </div>
@@ -30,7 +30,7 @@ function App(props) {
 }
 
 const mapStateToProps = state => ({
-    isTodoFormVisible: todoSelectors.selectIsTodoFormVisible(state),
+    isItemFormVisible: itemSelectors.selectIsItemFormVisible(state),
     currentItemList: selectCurrentItemList(state)
 });
 

@@ -1,18 +1,18 @@
 import {ItemActionTypes} from "./item.types";
 
-export const createItem = item => ({
+export const createItem = ({list, item}) => ({
     type: ItemActionTypes.CREATE_ITEM,
-    payload: item
+    payload: ({list, item})
 });
 
-export const editItem = item => ({
+export const editItem = ({list, editedItem}) => ({
     type: ItemActionTypes.EDIT_ITEM,
-    payload: item
+    payload: ({list, editedItem})
 });
 
-export const deleteItem = id => ({
+export const deleteItem = ({list, id}) => ({
     type: ItemActionTypes.DELETE_ITEM,
-    payload: id
+    payload: ({list, id})
 });
 
 export const toggleItemForm = () => ({
@@ -23,9 +23,9 @@ export const toggleEditMode = () => ({
     type: ItemActionTypes.TOGGLE_EDIT_MODE,
 });
 
-export const checkDoneItem = item => ({
-    type: ItemActionTypes.CHECK_DONE_ITEM,
-    payload: item
+export const checkDoneTodo = id => ({
+    type: ItemActionTypes.CHECK_DONE_TODO,
+    payload: id
 });
 
 export const setCurrentItem = item => ({
@@ -39,6 +39,6 @@ export const itemActions = {
     deleteItem,
     toggleItemForm,
     toggleEditMode,
-    checkDoneItem,
+    checkDoneTodo,
     setCurrentItem
 }

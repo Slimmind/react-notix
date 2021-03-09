@@ -2,7 +2,7 @@ import React from "react";
 import Todo from "../todo";
 import {connect} from "react-redux";
 
-import {selectFilteredTodoList} from "../../store/todo/todo.selectors";
+import {selectFilteredTodoList} from "../../store/item/item.selectors";
 
 const TodoList = ({filteredList}) => (
     <ul className="todo-list items-list">

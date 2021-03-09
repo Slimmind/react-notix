@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {connect} from "react-redux";
 import classNames from "classnames";
-import { todoActions } from "../../store/todo/todo.actions";
-import {todoSelectors} from "../../store/todo/todo.selectors";
+import {itemActions} from "../../store/item/item.actions";
+import {itemSelectors} from "../../store/item/item.selectors";
 
 import "./todo.styles.scss";
 
@@ -10,23 +10,23 @@ const Todo = (props) => {
     const {
         todo, 
         dispatchCheckDoneTodo,
-        dispatchSetCurrentTodo,
-        dispatchToggleTodoForm,
+        dispatchSetCurrentItem,
+        dispatchToggleItemForm,
         dispatchToggleEditMode
     } = props;
+
     const todoSymbol = todo.title.charAt(0);
-    const [checkTodo, setCheckTodo] = useState(todo);
 
     const handlerCheckTodo = (event) => {
         event.stopPropagation();
-        setCheckTodo({...checkTodo, done: !todo.done});
-        dispatchCheckDoneTodo(checkTodo);
+        dispatchCheckDoneTodo(todo.id);
+        console.log("ID: ", todo.id);
     }
 
     const handlerEditTodo = () => {
         dispatchToggleEditMode();
-        dispatchSetCurrentTodo(todo);
-        dispatchToggleTodoForm();
+        dispatchSetCurrentItem(todo);
+        dispatchToggleItemForm();
     }
 
     return (
@@ -48,14 +48,14 @@ const Todo = (props) => {
 }
 
 const mapStateToProps = state => ({
-    currentTodo: todoSelectors.selectCurrentTodo(state)
+    currentItem: itemSelectors.selectCurrentItem(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-    dispatchCheckDoneTodo: todo => dispatch(todoActions.checkDoneTodo(todo)),
-    dispatchSetCurrentTodo: todo => dispatch(todoActions.setCurrentTodo(todo)),
-    dispatchToggleEditMode: () => dispatch(todoActions.toggleEditMode()),
-    dispatchToggleTodoForm: () => dispatch(todoActions.toggleTodoForm())
+    dispatchCheckDoneTodo: id => dispatch(itemActions.checkDoneTodo(id)),
+    dispatchSetCurrentItem: todo => dispatch(itemActions.setCurrentItem(todo)),
+    dispatchToggleEditMode: () => dispatch(itemActions.toggleEditMode()),
+    dispatchToggleItemForm: () => dispatch(itemActions.toggleItemForm())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo);

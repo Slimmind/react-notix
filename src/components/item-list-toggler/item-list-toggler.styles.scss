@@ -3,7 +3,7 @@
 .item-toggler {
     @include flex(row);
     width: calc(100% - 20px);
-    margin: 10px auto 30px;
+    margin: 0 auto 20px;
     border-radius: $main-radius;
     box-shadow: $main-shadow;
 

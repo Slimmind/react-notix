@@ -7,23 +7,13 @@ import Controls from "../controls";
 import Button from "../button";
 import InputField from "../input-field";
 import {navPanelActions} from "../../store/nav-panel/nav-panel.actions";
-import {todoActions} from "../../store/todo/todo.actions";
-import {noteActions} from "../../store/note/note.actions";
-import {selectCurrentItemList} from "../../store/item-list-toggler/item-list-toggler.selectors";
+import {itemActions} from "../../store/item/item.actions";
 
 const NavPanel = (props) => {
-    const {dispatchToggleTodoForm, dispatchToggleNoteForm, dispatchSetSearchQuery, currentItemList} = props;
+    const {dispatchToggleItemForm, dispatchSetSearchQuery} = props;
 
     const handlerSearch = ({target: {value}}) => {
         dispatchSetSearchQuery(value.toLowerCase());
-    }
-
-    const toggleItemForm = () => {
-        if(currentItemList === "todo-list") {
-            dispatchToggleTodoForm();
-        } else {
-            dispatchToggleNoteForm();
-        }
     }
 
     return (
@@ -43,23 +33,16 @@ const NavPanel = (props) => {
                 <Button 
                     classes="btn add-item-btn"
                     label="add item"
-                    handler={toggleItemForm}
+                    handler={dispatchToggleItemForm}
                 />
             </Controls>
         </header>
     ); 
 }
 
-const mapStateToProps = state => {
-    return ({
-        currentItemList: selectCurrentItemList(state),
-    })
-};
-
 const mapDispatchToProps = dispatch => ({
-    dispatchToggleTodoForm: () => dispatch(todoActions.toggleTodoForm()),
-    dispatchToggleNoteForm: () => dispatch(noteActions.toggleNoteForm()),
+    dispatchToggleItemForm: () => dispatch(itemActions.toggleItemForm()),
     dispatchSetSearchQuery: value => dispatch(navPanelActions.setSearchQuery(value))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavPanel);
+export default connect(null, mapDispatchToProps)(NavPanel);

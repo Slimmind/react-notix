@@ -1,7 +1,7 @@
 import {ItemListTogglerTypes} from "./item-list-toggler.types";
 
 const INITIAL_STATE = {
-    currentItemList: "todo-list"
+    currentItemList: "todoList"
 }
 
 const itemListTogglerReducer = (state = INITIAL_STATE, action) => {

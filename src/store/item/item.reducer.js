@@ -60,39 +60,50 @@ const INITIAL_STATE = {
 
 const itemReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
-        case ItemActionTypes.TOGGLE_NOTE_FORM:
+        case ItemActionTypes.TOGGLE_ITEM_FORM:
             return {
                 ...state,
                 isItemFormVisible: !state.isItemFormVisible
             };
-        case ItemActionTypes.CREATE_NOTE:
+        case ItemActionTypes.CREATE_ITEM:
+            console.log("TEST: ", action.payload);
             return {
                 ...state,
-                noteList: [...state.noteList, action.payload]
+                [action.payload.list]: [...state[action.payload.list], action.payload.item]
             };
-        case ItemActionTypes.EDIT_NOTE:
+        case ItemActionTypes.EDIT_ITEM:
             return {
                 ...state,
-                noteList: state.noteList.map(item => {
-                    return item.id === action.payload.id
-                    ? action.payload
+                [action.payload.list]: state[action.payload.list].map(item => {
+                    return item.id === action.payload.editedItem.id
+                    ? action.payload.editedItem
                     : item;
                 })
             };
-        case ItemActionTypes.DELETE_NOTE:
+        case ItemActionTypes.DELETE_ITEM:
             return {
                 ...state,
-                noteList: state.noteList.filter(item => item.id !== action.payload)
+                [action.payload.list]: state[action.payload.list].filter(item => item.id !== action.payload.id)
             };
         case ItemActionTypes.TOGGLE_EDIT_MODE:
             return {
                 ...state,
                 isEditMode: !state.isEditMode
             }
-        case ItemActionTypes.SET_CURRENT_NOTE:
+        case ItemActionTypes.SET_CURRENT_ITEM:
             return {
                 ...state,
                 currentItem: action.payload
+            }
+        case ItemActionTypes.CHECK_DONE_TODO:
+            return {
+                ...state,
+                todoList: state.todoList.map(item => {
+                    console.log("PAYLOAD: ", action.payload);
+                    return item.id === action.payload
+                    ? {...item, done: !item.done}
+                    : item;
+                })
             }
         default:
             return state;

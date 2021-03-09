@@ -11,10 +11,10 @@ export const selectCurrentItem = state => state.item.currentItem;
 
 export const selectEditMode = state => state.item.isEditMode;
 
-export const selectIsItemFormVisible = state => state.todo.isItemFormVisible;
+export const selectIsItemFormVisible = state => state.item.isItemFormVisible;
 
-export const selectFilteredItemList = createSelector(
-    selectItemList,
+export const selectFilteredTodoList = createSelector(
+    selectTodoList,
     selectSearchQuery,
     (list, searchQuery) => (
         searchQuery ? list.filter(listItem => {
@@ -27,10 +27,25 @@ export const selectFilteredItemList = createSelector(
     )
 );
 
-export const todoSelectors = {
+export const selectFilteredNoteList = createSelector(
+    selectNoteList,
+    selectSearchQuery,
+    (list, searchQuery) => (
+        searchQuery ? list.filter(listItem => {
+            return (
+                isStringIncludes(listItem.title, searchQuery) || 
+                isStringIncludes(listItem.text, searchQuery)
+            ) ? listItem : null;
+        }) : list
+    )
+);
+
+export const itemSelectors = {
     selectTodoList,
+    selectNoteList,
     selectCurrentItem,
     selectEditMode,
     selectIsItemFormVisible,
-    selectFilteredItemList
+    selectFilteredTodoList,
+    selectFilteredNoteList
 }
