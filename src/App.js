@@ -11,27 +11,27 @@ import {itemSelectors} from "./store/item/item.selectors";
 import {selectCurrentItemList} from "./store/item-list-toggler/item-list-toggler.selectors";
 
 function App(props) {
-    const {isItemFormVisible, currentItemList} = props;
+  const {isItemFormVisible, currentItemList} = props;
 
-    const itemList = currentItemList === "todoList" ? <TodoList /> : <NoteList />
+  const itemList = currentItemList === "todoList" ? <TodoList /> : <NoteList />
 
-    return (
-        <div className="App">
-            <ItemListToggler/>
-            {
-                itemList
-            }
-            <Popups>
-                {isItemFormVisible && <ItemForm />}
-            </Popups>
-            <NavPanel />
-        </div>
-    );
+  return (
+    <div className="App">
+      <ItemListToggler/>
+      {
+        itemList
+      }
+      <Popups>
+        {isItemFormVisible && <ItemForm />}
+      </Popups>
+      <NavPanel />
+    </div>
+  );
 }
 
 const mapStateToProps = state => ({
-    isItemFormVisible: itemSelectors.selectIsItemFormVisible(state),
-    currentItemList: selectCurrentItemList(state)
+  isItemFormVisible: itemSelectors.selectIsItemFormVisible(state),
+  currentItemList: selectCurrentItemList(state)
 });
 
 export default connect(mapStateToProps)(App);

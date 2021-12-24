@@ -1,17 +1,23 @@
 import React from "react";
 
-const TextAreaField = (props) => (
-    <div className="input-wrap">
-        <textarea
-            name={props.name}
-            placeholder={props.placeholder}
-            cols="1"
-            rows="3"
-            className={props.classes}
-            value={props.value}
-            onChange={props.handler}
-        ></textarea>
-    </div>
+const TextAreaField = ({
+  name,
+  placeholder,
+  classes,
+  value,
+  handler
+}) => (
+  <div className="input-wrap">
+    <textarea
+      name={name}
+      placeholder={placeholder}
+      cols="1"
+      rows="3"
+      className={classes}
+      value={value}
+      onChange={handler}
+    ></textarea>
+  </div>
 );
 
 export default TextAreaField;

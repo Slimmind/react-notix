@@ -1,15 +1,21 @@
 import React from "react";
 import "./button.styles.scss";
 
-const Button = (props) => ( 
-    <button
-        type={props.type ? props.type : "button"}
-        className={props.classes}
-        aria-label={props.label}
-        onClick={props.handler}
-    >
-        {props.text}
-    </button>
+const Button = ({
+  type,
+  classes,
+  label,
+  handler,
+  text
+}) => (
+  <button
+    type={type ? type : "button"}
+    className={classes}
+    aria-label={label}
+    onClick={handler}
+  >
+    {text}
+  </button>
 )
 
 export default Button;
