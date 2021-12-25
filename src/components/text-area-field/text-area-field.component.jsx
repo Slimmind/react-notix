@@ -1,6 +1,8 @@
 import React from "react";
 
-const TextAreaField = ({
+import { types } from './types';
+
+export const TextAreaField = ({
   name,
   placeholder,
   classes,
@@ -20,4 +22,4 @@ const TextAreaField = ({
   </div>
 );
 
-export default TextAreaField;
+TextAreaField.propTypes = types;

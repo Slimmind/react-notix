@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 
 import { selectFilteredTodoList } from "../../store/item/item.selectors";
 
+import { types } from './types';
+
 const TodoList = ({ filteredList }) => (
   <ul className="todo-list items-list">
     {
@@ -15,5 +17,7 @@ const TodoList = ({ filteredList }) => (
 const mapStateToProps = state => ({
   filteredList: selectFilteredTodoList(state)
 });
+
+TodoList.propTypes = types;
 
 export default connect(mapStateToProps)(TodoList);

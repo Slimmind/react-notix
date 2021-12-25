@@ -5,6 +5,8 @@ import { selectFilteredNoteList } from "../../store/item/item.selectors";
 
 import "./note-list.styles.scss";
 
+import { types } from './types';
+
 const NoteList = ({ filteredList }) => {
   return (
     <ul className="note-list items-list">
@@ -17,5 +19,8 @@ const NoteList = ({ filteredList }) => {
 
 const mapStateToProps = state => ({
   filteredList: selectFilteredNoteList(state)
-})
+});
+
+NoteList.propTypes = types;
+
 export default connect(mapStateToProps)(NoteList);

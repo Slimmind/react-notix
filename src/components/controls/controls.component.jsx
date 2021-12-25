@@ -1,8 +1,9 @@
 import React from "react";
 import "./controls.styles.scss";
+import {types} from './types';
 
-const Controls = ({type, children}) => (
-    <div className={`controls ${type}`}>{children}</div>
+export const Controls = ({type, children}) => (
+  <div className={`controls ${type}`}>{children}</div>
 );
 
-export default Controls;
+Controls.propTypes = types;

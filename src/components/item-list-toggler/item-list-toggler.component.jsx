@@ -3,13 +3,16 @@ import { connect } from "react-redux";
 import InputField from "../input-field";
 import { selectCurrentItemList } from "../../store/item-list-toggler/item-list-toggler.selectors";
 import { toggleItemList } from "../../store/item-list-toggler/item-list-toggler.actions";
+
 import "./item-list-toggler.styles.scss";
+
+import { types } from './types';
 
 const ItemListToggler = ({ currentItemList, dispatchToggleItemList }) => {
   const handleChangeInput = ({ target: { value } }) => {
     dispatchToggleItemList(value);
   }
-  
+
   return (
     <div className="item-toggler">
       <InputField
@@ -41,5 +44,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatchToggleItemList: listType => dispatch(toggleItemList(listType))
 });
+
+ItemListToggler.propTypes = types;
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemListToggler);

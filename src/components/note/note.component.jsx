@@ -5,6 +5,8 @@ import { itemSelectors } from "../../store/item/item.selectors";
 
 import "./note.styles.scss";
 
+import { types } from './types';
+
 const Note = ({
   note,
   dispatchSetCurrentItem,
@@ -40,5 +42,7 @@ const mapDispatchToProps = dispatch => ({
   dispatchToggleEditMode: () => dispatch(itemActions.toggleEditMode()),
   dispatchToggleItemForm: () => dispatch(itemActions.toggleItemForm())
 });
+
+Note.propTypes = types;
 
 export default connect(mapStateToProps, mapDispatchToProps)(Note);

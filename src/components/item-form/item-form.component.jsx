@@ -16,6 +16,8 @@ import Button from "../button";
 
 import "./item-form.styles.scss";
 
+import { types } from './types';
+
 const ItemForm = ({
   currentItem,
   currentItemList,
@@ -196,5 +198,7 @@ const mapDispatchToProps = dispatch => ({
   dispatchSetCurrentItem: item => dispatch(itemActions.setCurrentItem(item)),
   dispatchToggleEditMode: () => dispatch(itemActions.toggleEditMode())
 });
+
+ItemForm.propTypes = types;
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemForm);

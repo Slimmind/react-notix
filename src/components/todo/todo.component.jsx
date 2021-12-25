@@ -6,6 +6,8 @@ import { itemSelectors } from "../../store/item/item.selectors";
 
 import "./todo.styles.scss";
 
+import { types } from './types';
+
 const Todo = ({
   todo,
   dispatchCheckDoneTodo,
@@ -55,5 +57,7 @@ const mapDispatchToProps = dispatch => ({
   dispatchToggleEditMode: () => dispatch(itemActions.toggleEditMode()),
   dispatchToggleItemForm: () => dispatch(itemActions.toggleItemForm())
 });
+
+Todo.propTypes = types;
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo);

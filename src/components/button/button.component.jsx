@@ -1,7 +1,8 @@
 import React from "react";
 import "./button.styles.scss";
+import { types } from './types';
 
-const Button = ({
+export const Button = ({
   type,
   classes,
   label,
@@ -16,6 +17,6 @@ const Button = ({
   >
     {text}
   </button>
-)
+);
 
-export default Button;
+Button.propTypes = types;

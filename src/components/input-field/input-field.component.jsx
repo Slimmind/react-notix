@@ -1,6 +1,7 @@
 import React from "react";
+import { types } from './types';
 
-const InputField = ({
+export const InputField = ({
   id,
   classes,
   type,
@@ -34,4 +35,4 @@ const InputField = ({
   );
 };
 
-export default InputField;
+InputField.propTypes = types;
