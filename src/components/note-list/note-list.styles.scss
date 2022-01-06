@@ -1,5 +1,7 @@
 @import "../../style-helper.scss";
 
 .note-list {
-
+  @media screen and (min-width: 768px) {
+    @include flex(row, space-between, flex-start, wrap);
+  }
 }

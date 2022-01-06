@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import * as React from "react";
 import { connect } from "react-redux";
 
 import generateID from "../../helpers/generate-id";
@@ -47,7 +47,7 @@ const ItemForm = ({
     color: "#cdcdcd"
   }
 
-  const [formData, setFormData] = useState(currentItem);
+  const [formData, setFormData] = React.useState(currentItem);
 
   const handleChangeInput = ({ target: { value, name } }) => {
     setFormData({ ...formData, [name]: value });

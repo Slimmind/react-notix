@@ -1,129 +1,129 @@
 @import "../../style-helper.scss";
 
 .btn {
-    position: relative;
-    display: inline-block;
-    width: auto;
-    min-width: 40px;
-    max-width: 100%;
-    height: 40px;
-    padding: 5px 15px;
-    font: 700 16px/20px $main-font;
-    color: $color-white;
-    background-color: transparent;
+  position: relative;
+  display: inline-block;
+  width: auto;
+  min-width: 40px;
+  max-width: 100%;
+  height: 40px;
+  padding: 5px 15px;
+  font: 700 16px/20px $main-font;
+  color: $color-white;
+  background-color: transparent;
+  border: none;
+  border-radius: $main-radius;
+  outline: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: $main-shadow;
+  @include bg(center, center, cover);
+
+  &:active {
+    border: 2px solid $color-red;
+  }
+
+  &.cancel-btn {
+    background-image: url("../../assets/icon-back.svg");
+  }
+
+  &.change-btn {
+    background-image: url("../../assets/icon-save.svg");
+  }
+
+  &.create-btn {
+    background-image: url("../../assets/icon-true.svg");
+  }
+
+  &.delete-btn {
+    background-image: url("../../assets/icon-del.svg");
+  }
+
+  &.round-btn {
+    width: 50px;
     border: none;
-    border-radius: $main-radius;
-    outline: none;
-    text-transform: uppercase;
-    cursor: pointer;
-    flex-shrink: 0;
-    box-shadow: $main-shadow;
-    @include bg(center, center, cover);
+    background-color: $color-white;
+  }
 
-    &:active {
-        border: 2px solid $color-red;
+  &.clean-btn {
+    &:before,
+    &:after {
+      content: "";
+      @include pos(absolute, calc(50% - 2px), calc(50% - 16px));
+      width: 32px;
+      height: 4px;
+      background-color: $color-red;
+      pointer-events: none;
     }
 
-    &.cancel-btn {
-        background-image: url("../../assets/icon-back.svg");
+    &:before {
+      transform: rotate(-45deg);
     }
 
-    &.change-btn {
-        background-image: url("../../assets/icon-save.svg");
+    &:after {
+      transform: rotate(45deg);
+    }
+  }
+
+  &.menu-btn {
+    border-radius: 50%;
+    background-color: $color-white;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      left: calc(50% - 12px);
+      width: 24px;
+      pointer-events: none;
     }
 
-    &.create-btn {
-        background-image: url("../../assets/icon-true.svg");
+    &:before {
+      top: calc(50% - 10px);
+      height: 12px;
+      border: solid $color-green;
+      border-width: 4px 0;
     }
 
-    &.delete-btn {
-        background-image: url("../../assets/icon-del.svg");
+    &:after {
+      top: calc(50% - 2px);
+      height: 4px;
+      background-color: $color-green;
+    }
+  }
+
+  &.add-item-btn {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: $color-white;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+
+    &:before,
+    &:after {
+      content: "";
+      @include pos(absolute, calc(50% - 2px), calc(50% - 12px));
+      width: 24px;
+      height: 4px;
+      background-color: $color-green;
+      pointer-events: none;
+      transition: background-color 0.3s;
     }
 
-    &.round-btn {
-        width: 50px;
-        border: none;
-        background-color: $color-white;
+    &:after {
+      transform: rotate(90deg);
     }
 
-    &.clean-btn {
-        &:before,
-        &:after {
-            content: "";
-            @include pos(absolute, calc(50% - 2px), calc(50% - 16px));
-            width: 32px;
-            height: 4px;
-            background-color: $color-red;
-            pointer-events: none;
-        }
+    &.clear-search-field {
+      transform: rotate(-45deg);
 
-        &:before {
-            transform: rotate(-45deg);
-        }
-
-        &:after {
-            transform: rotate(45deg);
-        }
+      &:before,
+      &:after {
+        background-color: $color-red;
+      }
     }
-
-    &.menu-btn {
-        border-radius: 50%;
-        background-color: $color-white;
-
-        &:before,
-        &:after {
-            content: "";
-            position: absolute;
-            left: calc(50% - 12px);
-            width: 24px;
-            pointer-events: none;
-        }
-
-        &:before {
-            top: calc(50% - 10px);
-            height: 12px;
-            border: solid $color-green;
-            border-width: 4px 0;
-        }
-
-        &:after {
-            top: calc(50% - 2px);
-            height: 4px;
-            background-color: $color-green;
-        }
-    }
-
-    &.add-item-btn {
-        display: block;
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
-        background-color: $color-white;
-        transition: transform 0.3s ease-out;
-        will-change: transform;
-
-        &:before,
-        &:after {
-            content: "";
-            @include pos(absolute, calc(50% - 2px), calc(50% - 12px));
-            width: 24px;
-            height: 4px;
-            background-color: $color-green;
-            pointer-events: none;
-            transition: background-color 0.3s;
-        }
-
-        &:after {
-            transform: rotate(90deg);
-        }
-
-        &.clear-search-field {
-            transform: rotate(-45deg);
-
-            &:before,
-            &:after {
-                background-color: $color-red;
-            }
-        }
-    }
+  }
 }

@@ -1,28 +1,28 @@
 .controls {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-    &.center {
-        justify-content: space-around;
+  &.center {
+    justify-content: space-around;
+  }
+
+  &.right {
+    justify-content: flex-end;
+  }
+
+  &.stretch {
+    justify-content: space-between;
+  }
+
+  .input-wrap {
+    position: relative;
+    margin-bottom: 0;
+    padding-top: 60px;
+    text-align: center;
+
+    label {
+      cursor: pointer;
     }
-
-    &.right {
-        justify-content: flex-end;
-    }
-
-    &.stretch {
-        justify-content: space-between;
-    }
-
-    .input-wrap {
-        position: relative;
-        margin-bottom: 0;
-        padding-top: 60px;
-        text-align: center;
-
-        label {
-            cursor: pointer;
-        }
-    }
+  }
 }

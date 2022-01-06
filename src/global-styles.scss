@@ -1,330 +1,334 @@
 @import "./style-helper.scss";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 body {
-    font: 400 14px/20px $main-font;
-    cursor: pointer;
-    -webkit-font-smoothing: antialiased;
+  font: 400 14px/20px $main-font;
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+
+  @media (min-width: 1280px) {
+    cursor: auto;
+  }
 }
 
 .no-scroll {
-    width: 100%;
-    height: 100vh;
-    max-height: 100vh;
-    overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 .overlay {
-    main {
-        filter: blur(5px);
+  main {
+    filter: blur(5px);
 
-        &:after {
-            content: "";
-            @include pos(absolute, 0, 0, 0, 0);
-            background-color: rgba($color-blue, 0.3);
-        }
+    &:after {
+      content: "";
+      @include pos(absolute, 0, 0, 0, 0);
+      background-color: rgba($color-blue, 0.3);
     }
+  }
 }
 
 main {
-    position: relative;
-    min-height: 100%;
-    max-height: 100%;
+  position: relative;
+  min-height: 100%;
+  max-height: 100%;
 
-    &:before {
-        content: "";
-        @include pos(absolute, 0, 0);
-        width: 100%;
-        width: 100%;
-        height: 100%;
-        background: url("./assets/tiny-squares.png");
-        opacity: 0.3;
-        z-index: -1;
-    }
+  &:before {
+    content: "";
+    @include pos(absolute, 0, 0);
+    width: 100%;
+    width: 100%;
+    height: 100%;
+    background: url("./assets/tiny-squares.png");
+    opacity: 0.3;
+    z-index: -1;
+  }
 }
 
 #root {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 .toggle-item-list {
-    padding: 10px 10px 7px;
+  padding: 10px 10px 7px;
 
-    .toggler {
-        margin: 0 auto;
-    }
+  .toggler {
+    margin: 0 auto;
+  }
 }
 
 .items-list {
-    position: relative;
-    width: 100%;
-    max-height: calc(100vh - 150px);
-    overflow: auto;
-    padding: 3px 10px 5px;
-    opacity: 1;
-    transform: translate(0, 0);
-    transition: transform .7s, opacity .5s;
-    will-change: transform;
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 150px);
+  overflow: auto;
+  padding: 3px 10px 5px;
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: transform 0.7s, opacity 0.5s;
+  will-change: transform;
 
-    &.hidden {
-        @include pos(absolute, 67px, 0);
-        opacity: 0;
-        transform: translate(0, 40px);
-        pointer-events: none;
-    }
+  &.hidden {
+    @include pos(absolute, 67px, 0);
+    opacity: 0;
+    transform: translate(0, 40px);
+    pointer-events: none;
+  }
 }
 
 .input-wrap {
-    position: relative;
-    width: 100%;
-    margin-bottom: 30px;
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
 
-    textarea {
-        height: 145px;
-        resize: none;
-    }
+  textarea {
+    height: 145px;
+    resize: none;
+  }
 
-    [type="date"] {
-        padding-right: 50px;
-        background: $color-grey-light url('./assets/calendar-3.svg') no-repeat calc(100% - 11px) center / contain;
-    }
+  [type="date"] {
+    padding-right: 50px;
+    background: $color-grey-light url("./assets/calendar-3.svg") no-repeat
+      calc(100% - 11px) center / contain;
+  }
 
-    .todo-status {
-        @include pos(absolute, 0, 0);
-        width: 0;
-        height: 0;
+  .todo-status {
+    @include pos(absolute, 0, 0);
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+
+    + label {
+      position: relative;
+      font-size: 14px;
+      line-height: 30px;
+      padding-top: 70px;
+
+      &:before,
+      &:after {
+        content: "";
+        @include pos(absolute, 0, calc(50% - 30px));
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        box-sizing: border-box;
+      }
+
+      &:before {
+        border: 4px solid;
+        box-shadow: $main-shadow;
+      }
+
+      &:after {
         opacity: 0;
-        pointer-events: none;
-
-        +label {
-            position: relative;
-            font-size: 14px;
-            line-height: 30px;
-            padding-top: 70px;
-
-            &:before,
-            &:after {
-                content: '';
-                @include pos(absolute, 0, calc(50% - 30px));
-                border-radius: 50%;
-                width: 60px;
-                height: 60px;
-                box-sizing: border-box;
-            }
-
-            &:before {
-                border: 4px solid;
-                box-shadow: $main-shadow;
-            }
-
-            &:after {
-                opacity: 0;
-                transition: opacity .3s;
-            }
-        }
-
-        &.normal+label {
-            &:before {
-                border-color: $color-blue;
-            }
-
-            &:after {
-                background-color: $color-blue;
-            }
-        }
-
-        &.attention+label {
-            &:before {
-                border-color: $color-green;
-            }
-
-            &:after {
-                background-color: $color-green;
-            }
-        }
-
-        &.urgent+label {
-            &:before {
-                border-color: $color-red;
-            }
-
-            &:after {
-                background-color: $color-red;
-            }
-        }
-
-        &:checked {
-            &.normal+label {
-                color: $color-blue;
-            }
-
-            &.attention+label {
-                color: $color-green;
-            }
-
-            &.urgent+label {
-                color: $color-red;
-            }
-
-            +label:after {
-                opacity: 1;
-            }
-        }
+        transition: opacity 0.3s;
+      }
     }
+
+    &.normal + label {
+      &:before {
+        border-color: $color-blue;
+      }
+
+      &:after {
+        background-color: $color-blue;
+      }
+    }
+
+    &.attention + label {
+      &:before {
+        border-color: $color-green;
+      }
+
+      &:after {
+        background-color: $color-green;
+      }
+    }
+
+    &.urgent + label {
+      &:before {
+        border-color: $color-red;
+      }
+
+      &:after {
+        background-color: $color-red;
+      }
+    }
+
+    &:checked {
+      &.normal + label {
+        color: $color-blue;
+      }
+
+      &.attention + label {
+        color: $color-green;
+      }
+
+      &.urgent + label {
+        color: $color-red;
+      }
+
+      + label:after {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .input {
-    display: block;
-    width: 100%;
-    font: 18px/22px $main-font;
-    min-height: 60px;
-    padding: 19px 15px;
-    border: none;
-    border-radius: $main-radius;
-    box-shadow: $main-shadow;
-    background-color: $color-grey-light;
-    outline: none;
-    -webkit-appearance: none;
-    appearance: none;
+  display: block;
+  width: 100%;
+  font: 18px/22px $main-font;
+  min-height: 60px;
+  padding: 19px 15px;
+  border: none;
+  border-radius: $main-radius;
+  box-shadow: $main-shadow;
+  background-color: $color-grey-light;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
 
-    @include placeholder {
-        color: rgba($color-main, .3);
-    }
+  @include placeholder {
+    color: rgba($color-main, 0.3);
+  }
 }
 
 input[type="date"] {
-    -webkit-appearance: textfield;
+  -webkit-appearance: textfield;
 }
 
 ::-webkit-inner-spin-button,
 ::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
+  display: none;
+  -webkit-appearance: none;
 }
 
 .color {
+  label,
+  input {
+    display: inline-block;
+    vertical-align: middle;
+  }
 
-    label,
-    input {
-        display: inline-block;
-        vertical-align: middle;
-    }
-
-    label {
-        margin-right: 20px;
-    }
+  label {
+    margin-right: 20px;
+  }
 }
 
 input[type="color"] {
-    width: 50px;
-    height: 50px;
-    min-height: auto;
-    padding: 5px;
+  width: 50px;
+  height: 50px;
+  min-height: auto;
+  padding: 5px;
 }
 
-
-
 .edit-form {
-    .toggle-type {
-        display: none;
-    }
+  .toggle-type {
+    display: none;
+  }
 }
 
 .create-form-elements.controls,
 .edit-form-elements.controls {
-    padding-top: 20px;
-    padding-bottom: 70px;
+  padding-top: 20px;
+  padding-bottom: 70px;
 }
 
 .create-form {
-    .edit-form-elements {
-        display: none;
-    }
+  .edit-form-elements {
+    display: none;
+  }
 }
 
 .edit-form {
-    .create-form-elements {
-        display: none;
-    }
+  .create-form-elements {
+    display: none;
+  }
 }
 
 .item {
-    position: relative;
-    margin-bottom: 10px;
-    box-shadow: $main-shadow;
-    border-radius: $main-radius;
+  position: relative;
+  margin-bottom: 10px;
+  box-shadow: $main-shadow;
+  border-radius: $main-radius;
 
-    &:last-of-type {
-        margin-bottom: 0;
-    }
+  @media screen and (min-width: 768px) {
+    margin-bottom: 30px;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 // BUTTONS
 
-
-
 .check-btn {
-    @include pos(absolute, calc(50% - 15px), $right: 10px);
+  @include pos(absolute, calc(50% - 15px), $right: 10px);
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba($color-grey, 0.5);
+  border-radius: $main-radius;
+  // border-radius: 50%;
+
+  &:before {
+    content: "";
+    @include pos(absolute, calc(50% - 10px), $left: calc(50% - 6px));
+    width: 12px;
+    height: 20px;
+    border-right: 4px solid $color-white;
+    border-bottom: 4px solid $color-white;
+    transform: rotate(45deg) translate(-6px, -7px) scaleY(0);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    will-change: transform;
+    pointer-events: none;
+  }
+
+  &:after {
+    content: "";
+    @include pos(absolute, calc(50% - 15px), calc(50% - 15px));
     width: 30px;
     height: 30px;
-    border: 3px solid rgba($color-grey, 0.5);
-    border-radius: $main-radius;
-    // border-radius: 50%;
-
-    &:before {
-        content: "";
-        @include pos(absolute, calc(50% - 10px), $left: calc(50% - 6px));
-        width: 12px;
-        height: 20px;
-        border-right: 4px solid $color-white;
-        border-bottom: 4px solid $color-white;
-        transform: rotate(45deg) translate(-6px, -7px) scaleY(0);
-        opacity: 0;
-        transition: opacity 0.3s, transform 0.3s;
-        will-change: transform;
-        pointer-events: none;
-    }
-
-    &:after {
-        content: "";
-        @include pos(absolute, calc(50% - 15px), calc(50% - 15px));
-        width: 30px;
-        height: 30px;
-        pointer-events: none;
-    }
+    pointer-events: none;
+  }
 }
 
 .items-list {
-    position: relative;
-    width: 100%;
-    max-height: calc(100vh - 150px);
-    overflow: auto;
-    padding: 10px;
-    opacity: 1;
-    transform: translate(0, 0);
-    transition: transform .7s, opacity .5s;
-    will-change: transform;
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 150px);
+  overflow: auto;
+  padding: 10px;
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: transform 0.7s, opacity 0.5s;
+  will-change: transform;
 
-    &.hidden {
-        @include pos(absolute, 67px, 0);
-        opacity: 0;
-        transform: translate(0, 40px);
-        pointer-events: none;
-    }
+  &.hidden {
+    @include pos(absolute, 67px, 0);
+    opacity: 0;
+    transform: translate(0, 40px);
+    pointer-events: none;
+  }
 }

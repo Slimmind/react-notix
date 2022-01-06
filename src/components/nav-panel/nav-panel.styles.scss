@@ -1,128 +1,129 @@
 @import "../../style-helper.scss";
 
 .nav-panel {
-    @include pos(absolute, $bottom: 10px, $left: 10px);
-    width: calc(100% - 20px);
-    margin-top: -100px;
-    padding: 10px 0;
-    
-    &.menu-is-open {
-        .main-menu {
-            opacity: 1;
-            transform: translateX(0);
-            pointer-events: all;
-            z-index: 1;
-        }
-    }
+  @include pos(absolute, $bottom: 10px, $left: 50%);
+  width: calc(100% - 20px);
+  max-width: 480px;
+  padding: 10px 0;
+  transform: translateX(-50%);
 
+  &.menu-is-open {
     .main-menu {
-        @include pos(fixed, $bottom: 81px, $left: 10px);
-        width: 75%;
-        max-width: 320px;
-        height: calc(100% - 150px);
-        max-height: calc(100% - 150px);
-        padding: 10px;
-        border-radius: $main-radius;
-        background-color: $color-grey-light;
-        box-shadow: $main-shadow;
-        overflow: auto;
-        transform: translateX(-100vw);
-        opacity: 0;
-        transition: transform .3s, opacity .3s;
-        pointer-events: none;
-        will-change: transform;
-        z-index: -1;
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: all;
+      z-index: 1;
+    }
+  }
 
-        li {
-            padding: 15px 0;
-            border-bottom: 1px solid $color-white;
+  .main-menu {
+    @include pos(fixed, $bottom: 81px, $left: 10px);
+    width: 75%;
+    max-width: 320px;
+    height: calc(100% - 150px);
+    max-height: calc(100% - 150px);
+    padding: 10px;
+    border-radius: $main-radius;
+    background-color: $color-grey-light;
+    box-shadow: $main-shadow;
+    overflow: auto;
+    transform: translateX(-100vw);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+    pointer-events: none;
+    will-change: transform;
+    z-index: -1;
 
-            &:first-of-type {
-                padding-top: 5px;
-            }
+    li {
+      padding: 15px 0;
+      border-bottom: 1px solid $color-white;
 
-            &:last-of-type {
-                margin-bottom: 10px;
-            }
-        }
-    }
+      &:first-of-type {
+        padding-top: 5px;
+      }
 
-    .todo-filters,
-    .note-filters {
-        &.hidden {
-            display: none;
-        }
-        .filter:nth-of-type(4n) {
-            margin-right: 0;
-        }
+      &:last-of-type {
+        margin-bottom: 10px;
+      }
     }
+  }
 
-    .filter {
-        display: inline-block;
-        vertical-align: top;
+  .todo-filters,
+  .note-filters {
+    &.hidden {
+      display: none;
     }
+    .filter:nth-of-type(4n) {
+      margin-right: 0;
+    }
+  }
 
-    .filter {
-        position: relative;
-        display: inline-block;
-        vertical-align: top;
-        width: 45px;
-        height: 45px;
-        margin: 0 12px 10px 0;
-        padding: 10px 3px;
-        border: 3px solid $color-white;
-        border-radius: 50%;
-        box-shadow: $main-shadow;
-        color: rgba($color-white, .7);
-        text-align: center;
-        font-size: 14px;
-        line-height: 18px;
-        cursor: pointer;
-        &:before {
-            content: attr(data-amount);
-            display: block;
-            max-width: 100%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        &.hidden {
-            display: none;
-        }
-    }
+  .filter {
+    display: inline-block;
+    vertical-align: top;
+  }
 
-    [data-amount="0"] {
-        display: none;
+  .filter {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 45px;
+    height: 45px;
+    margin: 0 12px 10px 0;
+    padding: 10px 3px;
+    border: 3px solid $color-white;
+    border-radius: 50%;
+    box-shadow: $main-shadow;
+    color: rgba($color-white, 0.7);
+    text-align: center;
+    font-size: 14px;
+    line-height: 18px;
+    cursor: pointer;
+    &:before {
+      content: attr(data-amount);
+      display: block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
+    &.hidden {
+      display: none;
+    }
+  }
 
-    [data-amount="0"] + .cancel-filters {
-        display: none;
-    }
+  [data-amount="0"] {
+    display: none;
+  }
 
-    .cancel-filters {
-        color: $color-blue;
-        background-color: $color-white;
-    }
-    .filter.normal {
-        background-color: $color-blue;
-    }
-    .filter.warning {
-        background-color: $color-green;
-    }
-    .filter.urgent {
-        background-color: $color-red;
-    }
+  [data-amount="0"] + .cancel-filters {
+    display: none;
+  }
 
-    .controls .input-wrap {
-        width: calc(100% - 100px);
-        padding: 0;
-    }
+  .cancel-filters {
+    color: $color-blue;
+    background-color: $color-white;
+  }
+  .filter.normal {
+    background-color: $color-blue;
+  }
+  .filter.warning {
+    background-color: $color-green;
+  }
+  .filter.urgent {
+    background-color: $color-red;
+  }
 
-    input[type="search"] {
-        display: inline-block;
-        min-height: 40px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        box-shadow: none;
-        background-color: $color-grey-light;
-    }
+  .controls .input-wrap {
+    width: calc(100% - 100px);
+    padding: 0;
+  }
+
+  input[type="search"] {
+    display: inline-block;
+    min-height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: none;
+    background-color: $color-grey-light;
+  }
 }

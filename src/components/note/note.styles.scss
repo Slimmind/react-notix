@@ -1,41 +1,50 @@
 @import "../../style-helper.scss";
 
 .note {
-    padding: 8px;
-    &:before {
-        content: "";
-        @include pos(absolute, 0, 0, 0, 0);
-        background-color: rgba($color-grey, .4);
-        border-radius: $main-radius;
-    }
+  padding: 8px;
 
-    .item-text {
-        color: $color-black;
-    }
+  @media screen and (min-width: 768px) {
+    width: calc(50% - 15px);
+  }
+
+  &:before {
+    content: "";
+    @include pos(absolute, 0, 0, 0, 0);
+    background-color: rgba($color-grey, 0.4);
+    border-radius: $main-radius;
+  }
+
+  .item-text {
+    color: $color-black;
+  }
+
+  &:after {
+    content: "";
+    @include pos(absolute, 0, 0, 0, 0);
+  }
+
+  .bg {
+    @include pos(absolute, 0, 0, 0, 0);
+    border-radius: $main-radius;
+    opacity: 0.3;
+    z-index: -1;
+  }
+
+  .item-title {
+    position: relative;
+    margin-bottom: 2px;
+    padding-bottom: 5px;
 
     &:after {
-        content: "";
-        @include pos(absolute, 0, 0, 0, 0);
+      content: "";
+      @include pos(absolute, $bottom: 0, $left: 0);
+      width: 100%;
+      height: 1px;
+      background-image: linear-gradient(
+        to right,
+        rgba($color-black, 0.2) 0%,
+        transparent 100%
+      );
     }
-
-    .bg {
-        @include pos(absolute,0,0,0,0);
-        border-radius: $main-radius;
-        opacity: .3;
-        z-index: -1;
-    }
-
-    .item-title {
-        position: relative;
-        margin-bottom: 2px;
-        padding-bottom: 5px;
-
-        &:after {
-            content: "";
-            @include pos(absolute, $bottom: 0, $left: 0);
-            width: 100%;
-            height: 1px;
-            background-image: linear-gradient(to right, rgba($color-black, .2) 0%, transparent 100%);
-        }
-    }
+  }
 }

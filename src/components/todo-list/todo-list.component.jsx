@@ -6,6 +6,8 @@ import { selectFilteredTodoList } from "../../store/item/item.selectors";
 
 import { types } from './types';
 
+import "./todo-list.styles.scss";
+
 const TodoList = ({ filteredList }) => (
   <ul className="todo-list items-list">
     {
